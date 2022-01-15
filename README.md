@@ -20,6 +20,10 @@ The platform.sh CLI generates a temporary certificate for use for deployment. Ho
 
 The PHP version to use. This is directly passed to [`shivammathur/setup-php`](https://github.com/marketplace/actions/setup-php-action). Default: `8.0`.
 
+### `force-push`
+
+An option to force push changes to the project repository on Platform.sh. Use with caution as force push overrides your commit history.
+
 ## Outputs
 
 No outputs.
@@ -33,4 +37,5 @@ with:
   cli-token: ${{ secrets.PlatformCliToken }}
   ssh-private-key: ${{ secrets.PlatformSshKey }}
   php-version: 8.1
+  force-push: true
 ```

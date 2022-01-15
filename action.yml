@@ -1,0 +1,34 @@
+name: 'Deploy to platform.sh'
+description: 'Set up platformsh CLI and deploy'
+inputs:
+  project-id:
+    description: 'Project ID on platform.sh'
+    required: true
+  cli-token:
+    description: 'Token for platform.sh CLI'
+    required: true
+  ssh-private-key:
+    description: 'SSH key to access the git repository on platform.sh'
+    required: true
+  php-version:
+    description: 'PHP version to setup for the CLI'
+    required: true
+    default: '8.0'
+runs:
+  using: "composite"
+  steps:
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+    - uses: shivammathur/setup-php@v2
+      with:
+        php-version: ${{ inputs.php-version }}
+    - uses: adam7/platformsh-cli-action@v1.1
+      with:
+        token: ${{ inputs.cli-token }}
+    - run: ${{ github.action_path }}/deploy.sh
+      shell: bash
+      env:
+        SSH_PRIVATE_KEY: ${{ inputs.ssh-private-key }}
+        PLATFORM_PROJECT_ID: ${{ inputs.project-id }}
+        PLATFORMSH_CLI_TOKEN: ${{ inputs.cli-token }}

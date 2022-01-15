@@ -1,5 +1,11 @@
 #!/usr/bin/env bash
 
+echo "SSH Config"
+cat ~/.ssh/config
+
+echo "Existing known_hosts"
+cat ~/.ssh/known_hosts
+
 # Copy known hosts into the SSH config.
 cat known_hosts >> ~/.ssh/known_hosts
 

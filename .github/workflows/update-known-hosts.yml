@@ -1,0 +1,29 @@
+name: 'Update Known Hosts file'
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '30 5 * * 1'
+
+jobs:
+  known-hosts:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: shivammathur/setup-php@v2
+      with:
+        php-version: 8.1
+    - uses: adam7/platformsh-cli-action@v1.1
+      with:
+        token: ${{ secrets.PLATFORM_CLI_TOKEN }}
+    - run: ./.github/update-known-hosts.php
+    - run: mv ./.github/known_hosts .
+
+    - uses: stefanzweifel/git-auto-commit-action@v4
+      with:
+        commit_message: Add prepared script
+        commit_options: '--no-verify --signoff'
+        file_pattern: known_hosts
+        commit_user_name: github-actions
+        commit_user_email: github-actions[bot]@users.noreply.github.com
+        commit_author: hw <github-actions[bot]@users.noreply.github.com>
+        push_options: ''

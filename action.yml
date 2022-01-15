@@ -32,3 +32,6 @@ runs:
         SSH_PRIVATE_KEY: ${{ inputs.ssh-private-key }}
         PLATFORM_PROJECT_ID: ${{ inputs.project-id }}
         PLATFORMSH_CLI_TOKEN: ${{ inputs.cli-token }}
+branding:
+  icon: upload-cloud
+  color: orange

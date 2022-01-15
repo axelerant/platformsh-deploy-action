@@ -20,7 +20,7 @@ jobs:
 
     - uses: stefanzweifel/git-auto-commit-action@v4
       with:
-        commit_message: Add prepared script
+        commit_message: Update known_hosts file
         commit_options: '--no-verify --signoff'
         file_pattern: known_hosts
         commit_user_name: github-actions

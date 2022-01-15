@@ -5,7 +5,7 @@ echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add - > /dev/null
 
 # Copy known hosts into the SSH config.
 mkdir -p ~/.ssh && chmod 0700 ~/.ssh
-cat known_hosts >> ~/.ssh/known_hosts
+cat ${GITHUB_ACTION_PATH}/known_hosts >> ~/.ssh/known_hosts
 
 echo "SSH Config"
 cat ~/.ssh/config

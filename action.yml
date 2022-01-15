@@ -9,7 +9,7 @@ inputs:
     required: true
   ssh-private-key:
     description: 'SSH key to access the git repository on platform.sh'
-    required: true
+    required: false
   php-version:
     description: 'PHP version to setup for the CLI'
     required: true

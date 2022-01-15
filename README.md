@@ -18,7 +18,7 @@ Apart from the token, the action also needs a private key to use to be able to p
 
 ### `php-version`
 
-The PHP version to use. This is directly passed to [`shivammathur/setup-php`](https://github.com/marketplace/actions/setup-php-action). Default: `7.4`.
+The PHP version to use. This is directly passed to [`shivammathur/setup-php`](https://github.com/marketplace/actions/setup-php-action). Default: `8.0`.
 
 ## Outputs
 

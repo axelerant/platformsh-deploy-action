@@ -27,7 +27,7 @@ No outputs.
 ## Example usage
 
 ```yaml
-uses: axelerant/platformsh-deploy-action@v1
+uses: axelerant/platformsh-deploy-action@v1.0.1
 with:
   project-id: ${{ secrets.PlatformProjectId }}
   cli-token: ${{ secrets.PlatformCliToken }}

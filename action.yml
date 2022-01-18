@@ -20,7 +20,7 @@ runs:
     - uses: actions/checkout@v2
       with:
         fetch-depth: 0
-    - uses: shivammathur/setup-php@v2
+    - uses: shivammathur/setup-php@2.16.0
       with:
         php-version: ${{ inputs.php-version }}
     - uses: adam7/platformsh-cli-action@v1.1

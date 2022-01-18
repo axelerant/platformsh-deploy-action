@@ -14,6 +14,9 @@ inputs:
     description: 'PHP version to setup for the CLI'
     required: true
     default: '8.0'
+  force-push:
+    description: 'Force push to Platform.sh'
+    required: false
 runs:
   using: "composite"
   steps:
@@ -32,6 +35,7 @@ runs:
         SSH_PRIVATE_KEY: ${{ inputs.ssh-private-key }}
         PLATFORM_PROJECT_ID: ${{ inputs.project-id }}
         PLATFORMSH_CLI_TOKEN: ${{ inputs.cli-token }}
+        FORCE_PUSH: ${{ inputs.force-push }}
 branding:
   icon: upload-cloud
   color: orange

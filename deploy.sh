@@ -9,9 +9,11 @@ fi
 # Copy known hosts into the SSH config.
 mkdir -p ~/.ssh && chmod 0700 ~/.ssh
 cat ${GITHUB_ACTION_PATH}/known_hosts >> ~/.ssh/known_hosts
+# The platform.sh project host is hardcoded.
+# This can be fixed later by writing a script that is supposed to return the project hostname.
+ssh-keyscan -t rsa -H git.au.platform.sh >> ~/.ssh/known_hosts
 
 platform project:set-remote ${PLATFORM_PROJECT_ID}
-ssh-keyscan -t ed25519 git.au.platform.sh >> ~/.ssh/known_hosts
 PLATFORM_OPTS="-vv --activate --target ${GITHUB_REF_NAME}"
 if [[ -n "$FORCE_PUSH" ]]; then
   PLATFORM_OPTS="$PLATFORM_OPTS --force"

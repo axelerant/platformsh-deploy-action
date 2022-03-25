@@ -17,6 +17,9 @@ inputs:
   force-push:
     description: 'Force push to Platform.sh'
     required: false
+  instance-name:
+    description: 'Name of the platform.sh instance'
+    default: ${GITHUB_REF_NAME}
 runs:
   using: "composite"
   steps:
@@ -36,6 +39,7 @@ runs:
         PLATFORM_PROJECT_ID: ${{ inputs.project-id }}
         PLATFORMSH_CLI_TOKEN: ${{ inputs.cli-token }}
         FORCE_PUSH: ${{ inputs.force-push }}
+        INSTANCE_NAME: ${{ inputs.instance-name }}
 branding:
   icon: upload-cloud
   color: orange

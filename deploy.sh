@@ -11,7 +11,7 @@ mkdir -p ~/.ssh && chmod 0700 ~/.ssh
 cat ${GITHUB_ACTION_PATH}/known_hosts >> ~/.ssh/known_hosts
 
 platform project:set-remote ${PLATFORM_PROJECT_ID}
-PLATFORM_OPTS="-vv --activate --target $INSTANCE_NAME"
+PLATFORM_OPTS="-vv --activate --target $ENVIRONMENT_NAME"
 if [[ -n "$FORCE_PUSH" ]]; then
   PLATFORM_OPTS="$PLATFORM_OPTS --force"
 fi

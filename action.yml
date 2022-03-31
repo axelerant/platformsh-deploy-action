@@ -19,7 +19,7 @@ inputs:
     required: false
   environment-name:
     description: 'Name of the platform.sh instance'
-    default: ${GITHUB_REF_NAME}
+    default: ${{ GITHUB_REF_NAME }}
 runs:
   using: "composite"
   steps:

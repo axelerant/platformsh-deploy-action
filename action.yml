@@ -39,6 +39,11 @@ runs:
       run: |
         ENVIRONMENT_NAME=${{ inputs.environment-name || env.GITHUB_REF_NAME }}
         echo "::set-output name=url::$ENVIRONMENT_NAME"
+    -
+      name: debug
+      shell: bash
+      run: |
+        echo "environment name is:  ${{ steps.set_environment_name.name }}"
     - run: ${{ github.action_path }}/deploy.sh
       shell: bash
       env:

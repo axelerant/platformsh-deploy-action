@@ -40,11 +40,6 @@ runs:
         ENVIRONMENT_NAME=${{ inputs.environment-name }}
         [[ "$ENVIRONMENT_NAME" == "" ]] && ENVIRONMENT_NAME="$GITHUB_REF_NAME"
         echo "::set-output name=url::$ENVIRONMENT_NAME"
-    -
-      name: debug
-      shell: bash
-      run: |
-        echo "${{ toJSON(steps) }}"
     - run: ${{ github.action_path }}/deploy.sh
       shell: bash
       env:
@@ -52,7 +47,7 @@ runs:
         PLATFORM_PROJECT_ID: ${{ inputs.project-id }}
         PLATFORMSH_CLI_TOKEN: ${{ inputs.cli-token }}
         FORCE_PUSH: ${{ inputs.force-push }}
-        ENVIRONMENT_NAME: ${{ steps.set_environment_name.name }}
+        ENVIRONMENT_NAME: ${{ steps.set_environment_name.outputs.url }}
 branding:
   icon: upload-cloud
   color: orange

@@ -44,6 +44,8 @@ runs:
       shell: bash
       run: |
         echo "environment name is:  ${{ steps.set_environment_name.name }}"
+        echo "$GITHUB_REF_NAME"
+        echo "${{ env.GITHUB_REF_NAME }}"
     - run: ${{ github.action_path }}/deploy.sh
       shell: bash
       env:

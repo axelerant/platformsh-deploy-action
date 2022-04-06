@@ -37,8 +37,8 @@ runs:
       id: set_environment_name
       shell: bash
       run: |
-        INPUT_ENVIRONMENT_NAME=${{ inputs.environment-name }}
-        ENVIRONMENT_NAME=$(( -z "$INPUT_ENVIRONMENT_NAME" ? "$GITHUB_REF_NAME" : "$INPUT_ENVIRONMENT_NAME" ))
+        ENVIRONMENT_NAME=${{ inputs.environment-name }}
+        [[ "$ENVIRONMENT_NAME" == "" ]] && ENVIRONMENT_NAME="$GITHUB_REF_NAME"
         echo "$ENVIRONMENT_NAME"
         echo "::set-output name=url::$ENVIRONMENT_NAME"
     -

@@ -24,6 +24,10 @@ The PHP version to use. This is directly passed to [`shivammathur/setup-php`](ht
 
 An option to force push changes to the project repository on Platform.sh. Use with caution as force push overrides your commit history.
 
+### `environment-name`
+
+The name of the platform.sh instance on which to act. Default: The current branch name.
+
 ## Outputs
 
 No outputs.

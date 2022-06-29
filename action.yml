@@ -17,6 +17,9 @@ inputs:
   force-push:
     description: 'Force push to Platform.sh'
     required: false
+  environment-name:
+    description: 'Name of the platform.sh instance'
+    required: false
 runs:
   using: "composite"
   steps:
@@ -36,6 +39,7 @@ runs:
         PLATFORM_PROJECT_ID: ${{ inputs.project-id }}
         PLATFORMSH_CLI_TOKEN: ${{ inputs.cli-token }}
         FORCE_PUSH: ${{ inputs.force-push }}
+        ENVIRONMENT_NAME: ${{ inputs.environment-name }}
 branding:
   icon: upload-cloud
   color: orange

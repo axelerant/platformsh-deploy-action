@@ -12,7 +12,7 @@ jobs:
     - uses: shivammathur/setup-php@v2
       with:
         php-version: 8.1
-    - uses: adam7/platformsh-cli-action@v1.1
+    - uses: adam7/platformsh-cli-action@v1.2
       with:
         token: ${{ secrets.PLATFORM_CLI_TOKEN }}
     - run: ./.github/update-known-hosts.php

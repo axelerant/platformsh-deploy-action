@@ -29,7 +29,7 @@ runs:
     - uses: shivammathur/setup-php@v2
       with:
         php-version: ${{ inputs.php-version }}
-    - uses: adam7/platformsh-cli-action@v1.1
+    - uses: adam7/platformsh-cli-action@v1.2
       with:
         token: ${{ inputs.cli-token }}
     - run: ${{ github.action_path }}/deploy.sh

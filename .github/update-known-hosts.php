@@ -49,7 +49,7 @@ $i = 1;
 foreach ($domains as $domain) {
     foreach ($prefixes as $prefix) {
         log(\sprintf("%02d/%02d Scanning %s%s", $i, $count, $prefix, $domain));
-        if ($output = run('ssh-keyscan ' . \escapeshellarg($prefix . $domain) . ' 2>&1')) {
+        if ($output = run('ssh-keyscan ' . \escapeshellarg($prefix . $domain) . ' 2>/dev/null')) {
             $known_hosts[] = trim($output);
         }
         elseif (isset($existing_known_hosts[$prefix . $domain])) {
@@ -85,7 +85,7 @@ function run(string $cmd): string
 {
     \exec($cmd, $output, $result_code);
     if ($result_code !== 0) {
-        log("The command returned an error code ($result_code): $cmd ->" . implode(" || ", $output));
+        log("The command returned an error code ($result_code): $cmd");
         return '';
     }
     return \implode("\n", $output);

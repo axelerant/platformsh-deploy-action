@@ -85,7 +85,7 @@ function run(string $cmd): string
 {
     \exec($cmd, $output, $result_code);
     if ($result_code !== 0) {
-        log("The command returned an error code ($result_code): $cmd");
+        log("The command returned an error code ($result_code): $cmd ->" . implode(" || ", $output));
         return '';
     }
     return \implode("\n", $output);

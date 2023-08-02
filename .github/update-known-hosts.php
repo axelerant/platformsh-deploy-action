@@ -7,6 +7,19 @@ $cliCommand = 'platform';
 
 log("Fetching the list of regions from the API...");
 
+// Read the existing known_hosts file.
+$existing_known_hosts = [];
+$e_filename = __DIR__ . '/../known_hosts';
+if (\file_exists($e_filename)) {
+    $known_hosts_lines = \file($e_filename, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+
+    // Build an associative array based on domain key.
+    foreach ($known_hosts_lines as $line) {
+        [$e_domain, ] = \explode(' ', trim($line));
+        $existing_known_hosts[trim($e_domain)] = $line;
+    }
+}
+
 $json = run($cliCommand . ' api:curl ' . escapeshellarg('/regions?filter[private]=0'));
 $regions = $json ? \json_decode($json, true) : [];
 if (!$regions || empty($regions['regions'])) {
@@ -38,6 +51,10 @@ foreach ($domains as $domain) {
         log(\sprintf("%02d/%02d Scanning %s%s", $i, $count, $prefix, $domain));
         if ($output = run('ssh-keyscan ' . \escapeshellarg($prefix . $domain) . ' 2>/dev/null')) {
             $known_hosts[] = trim($output);
+        }
+        elseif (isset($existing_known_hosts[$prefix . $domain])) {
+            // Use the existing record as fallback if ssh-keyscan fails.
+            $known_hosts[] = $existing_known_hosts[$prefix . $domain];
         }
         $i++;
     }

@@ -49,7 +49,7 @@ $i = 1;
 foreach ($domains as $domain) {
     foreach ($prefixes as $prefix) {
         log(\sprintf("%02d/%02d Scanning %s%s", $i, $count, $prefix, $domain));
-        if ($output = run('ssh-keyscan ' . \escapeshellarg($prefix . $domain) . ' 2>/dev/null')) {
+        if ($output = run('ssh-keyscan ' . \escapeshellarg($prefix . $domain) . ' 2>&1')) {
             $known_hosts[] = trim($output);
         }
         elseif (isset($existing_known_hosts[$prefix . $domain])) {

@@ -1,3 +1,55 @@
+
+
+⚠️ **Deprecation Notice** ⚠️
+
+This GitHub Action (`platformsh-deploy-action`) is now deprecated and will no longer be maintained or receive updates. We recommend using the new [Platform.sh Action](https://github.com/axelerant/platformsh-action) for all future deployments and integrations.
+
+## Migration Instructions
+
+To migrate to the new action, Edit your workflow YAML file(s) and follow these steps:
+
+1. Checkout repository code
+
+  ```yaml
+  - name: Check out repository code
+    uses: actions/checkout@v4
+    with:
+      fetch-depth: 0
+  ```
+2. **Replace the old action**: replace any references to `axelerant/platformsh-deploy-action` with `axelerant/platformsh-action`.
+
+## Example
+
+**Old Configuration:**
+
+  ```yaml
+    - name: Deploy to Platform.sh
+      uses: axelerant/platformsh-deploy-action@v1
+      with:
+        project-id: 'project-id'
+        cli-token: ${{ secrets.PlatformCliToken }}
+        ssh-private-key: ${{ secrets.PlatformSshKey }}
+        php-version: 8.1
+        force-push: true
+  ```
+
+**New Configuration:**
+
+```yaml
+- name: Check out repository code
+  uses: actions/checkout@v4
+  with:
+    fetch-depth: 0
+- name: Deploy to platform.sh
+  uses: axelerant/platformsh-action@v1
+  with:
+    action: 'deploy'
+    project-id: 'project-id'
+    cli-token: ${{ secrets.PLATFORMSH_CLI_TOKEN }}
+    ssh-private-key: ${{ secrets.PlatformSshKey }}
+    force-push: true
+```
+
 # Platform.sh Deploy action
 
 This is a composite action designed to simplify deployment to platform.sh. One of the main reasons to write this was to avoid a basic mistake with checking out the repository. The popular Github action `actions/checkout` does a shallow clone by default which can sometimes break the site. This action does a full clone and sets up PHP as well before installing the CLI.
